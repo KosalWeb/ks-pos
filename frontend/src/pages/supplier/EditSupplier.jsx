@@ -51,39 +51,39 @@ function EditSupplier() {
 
   return (
     <>
-        <h1 className='text-xl font-semibold'>Edit Supplier</h1>
+        <h1 className='text-xl font-semibold'>កែតម្រូវ អ្នកផ្គត់ផ្គង់</h1>
 
         <div className='max-w-lg bg-white p-3 rounded-md mt-4'>
             <form onSubmit={handleSubmit}>
                 <div className='mb-3'>
-                    <label htmlFor="" className='block'>Business Name*</label>
+                    <label htmlFor="" className='block'>ឈ្មោះក្រុមហ៊ុន*</label>
                     <input type="text" value={businessName} onChange={(e) => setBusinessName(e.target.value)} className='input w-full' placeholder='Enter business name' required />
                  </div>
 
                  <div className='mb-3'>
-                    <label htmlFor="" className='block'>Name*</label>
+                    <label htmlFor="" className='block'>ឈ្មោះ*</label>
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} className='input w-full' placeholder='Enter name' required />
                  </div>
                  <div className='mb-3'>
-                    <label htmlFor="" className='block'>Phone*</label>
+                    <label htmlFor="" className='block'>លេខទូរស័ព្ទ*</label>
                     <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} className='input w-full' placeholder='Enter phone' />
                  </div>
                  <div className='mb-3'>
-                    <label htmlFor="" className='block'>Address*</label>
+                    <label htmlFor="" className='block'>អាសយដ្ឋាន*</label>
                     <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className='input w-full' placeholder='Enter address' />
                  </div>
                  <div className='mb-3'>
-                    <label htmlFor="" className='block'>Note*</label>
+                    <label htmlFor="" className='block'>សំគាល់*</label>
                     <textarea value={note} onChange={(e) => setNote(e.target.value)} className='textarea w-full' placeholder='Enter note'></textarea>
                  </div>
                  <div className='mb-3 flex items-center justify-end gap-4'>
-                    <Link to="/supplier" className='btn'>Back</Link>
+                    <Link to="/supplier" className='btn'>ចាកចេញ</Link>
                     <button className='btn btn-neutral' disabled={isLoading}>
                      {
                            isLoading ? (
                               <span className="loading loading-spinner loading-md"></span>
                            ) : (
-                              <span>Save</span>
+                              <span>រក្សាទុក</span>
                            )
                      }
                     </button>

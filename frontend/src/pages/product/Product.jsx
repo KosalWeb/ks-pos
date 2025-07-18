@@ -1,26 +1,26 @@
 
 import { Link } from 'react-router'
 import { useQuery } from '../../hooks/useQuery'
-import { IoPencilSharp } from 'react-icons/io5'
 import { IoMdTrash } from 'react-icons/io'
 import { useState } from 'react'
 import { useCollection } from '../../hooks/useCollection'
 import toast from 'react-hot-toast'
 import { apiUrl } from '../../configs/env'
+import { FaEdit } from 'react-icons/fa'
 function Product() {
     const [search, setSearch] = useState("")
     const [page, setPage] = useState(1)
     const [limit, setLimit] = useState(10)
     const [refetch, setRefetch] = useState(false)
 
-    const { data: products, totalPage, isLoading } = useQuery("products",search, page, limit, refetch)
+    const { data: products, totalPage, isLoading } = useQuery("products", search, page, limit, refetch)
     console.log(products)
-    const {remove, isLoading: isDeleting} = useCollection("products")
+    const { remove, isLoading: isDeleting } = useCollection("products")
     const handleDelete = async (id) => {
-        if(confirm("Are you sure! you want to delete?")){
+        if (confirm("Are you sure! you want to delete?")) {
             const res = await remove(id)
-            if(res && isDeleting == false){
-               setRefetch(!refetch)
+            if (res && isDeleting == false) {
+                setRefetch(!refetch)
                 toast.success("deleted successfully!")
             }
         }
@@ -31,9 +31,9 @@ function Product() {
         <>
             <div className='flex items-center justify-between'>
                 <h1 className='text-xl font-semibold'>Product</h1>
-                <Link to="/product/create" className='btn btn-sm btn-neutral'>+ New</Link>
+                <Link to="/product/create" className='btn btn-sm btn-neutral'>+ ថ្មី</Link>
             </div>
-           
+
             <div className='bg-white mt-4 p-4 rounded-md border border-gray-200'>
 
                 <div className='flex items-center justify-between'>
@@ -56,25 +56,25 @@ function Product() {
                         {/* head */}
                         <thead>
                             <tr>
-                                <th>Image</th>
-                                <th>Name</th>
-                                <th>Category</th>
-                                <th>Code</th>
-                                <th>Cost Price</th>
-                                <th>Sale Price</th>
-                                <th>Current Stock</th>
-                                <th>Note</th>
-                                <th>Actions</th>
+                                <th>រូបភាព</th>
+                                <th>ឈ្មោះទំនិញ</th>
+                                <th>ប្រភេទទំនិញ</th>
+                                <th>កូដផលិតផល</th>
+                                <th>តម្លៃដើម</th>
+                                <th>តម្លៃលក់</th>
+                                <th>ស្តុក</th>
+                                <th>សំគាល់</th>
+                                <th>ប្រតិបត្តិការ</th>
                             </tr>
                         </thead>
-                        
+
                         {
                             (products?.length == 0 && isLoading == false) && (
                                 <tbody>
                                     <tr>
                                         <td colSpan={9} >
                                             <div className='flex justify-center'>
-                                                 <p>No Data!</p>
+                                                <p>គ្មានទិន្នន័យ!</p>
                                             </div>
                                         </td>
                                     </tr>
@@ -94,38 +94,38 @@ function Product() {
                                     </tr>
                                 </tbody>
                             ) : (
-                            <tbody>
+                                <tbody>
 
-                                {
-                                    products?.map((item, idx) => (
-                                        <tr className="hover:bg-base-300" key={idx}>
-                                            <th>
-                                                 <img src={`${apiUrl}/upload/${item.imageUrl}`} alt="" width={50} />
-                                            </th>
-                                            <td>{item?.name}</td>
-                                            <td>{item?.category?.name}</td>
-                                            <td>{item?.code}</td>
-                                            <td className='text-red-600 font-bold'>{item?.costPrice}៛</td>
-                                            <td className='text-red-600 font-bold'>{item?.salePrice}៛</td>
-                                            <td>{item?.currentStock}</td>
-                                            <td>{item?.note}</td>
-                                            <td className='flex items-center gap-2'>
-                                                <Link to={`/product/edit/${item._id}`}  className='text-lg text-gray-800 cursor-pointer'>
-                                                        <IoPencilSharp />
-                                                </Link>
-                                                <button onClick={() => handleDelete(item._id)} type='button' className='text-lg text-error cursor-pointer'>
-                                                        <IoMdTrash/>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))
-                                }
+                                    {
+                                        products?.map((item, idx) => (
+                                            <tr className="hover:bg-base-300" key={idx}>
+                                                <th>
+                                                    <img src={`${apiUrl}/upload/${item.imageUrl}`} alt="" width={50} />
+                                                </th>
+                                                <td>{item?.name}</td>
+                                                <td>{item?.category?.name}</td>
+                                                <td>{item?.code}</td>
+                                                <td className='text-red-600 font-bold'>{item?.costPrice}៛</td>
+                                                <td className='text-red-600 font-bold'>{item?.salePrice}៛</td>
+                                                <td>{item?.currentStock}</td>
+                                                <td>{item?.note}</td>
+                                                <td className='flex items-center gap-2'>
+                                                    <Link to={`/product/edit/${item._id}`} className='text-lg text-blue-500 cursor-pointer'>
+                                                        <FaEdit />
+                                                    </Link>
+                                                    <button onClick={() => handleDelete(item._id)} type='button' className='text-lg text-error cursor-pointer'>
+                                                        <IoMdTrash />
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    }
 
-                            </tbody>
+                                </tbody>
                             )
                         }
 
-                        
+
 
                     </table>
                 </div>

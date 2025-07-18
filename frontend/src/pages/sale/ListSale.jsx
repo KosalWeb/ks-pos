@@ -18,18 +18,18 @@ function ListSale() {
     const { data: sales, totalPage, isLoading } = useQuery("sale", search, page, limit, refetch)
     return (
         <>
-            <SalePaymentModal 
+            <SalePaymentModal
                 open={isOpen}
                 editId={editId}
                 onClose={() => {
-                     setIsOpen(false)
-                     setEditId("")
-                     setRefetch(!refetch)
+                    setIsOpen(false)
+                    setEditId("")
+                    setRefetch(!refetch)
                 }}
             />
             <div className='flex items-center justify-between'>
                 <h1 className='text-xl font-semibold'>List Sale</h1>
-                <Link to="/purchase/create" className='btn btn-sm btn-neutral'>+ New</Link>
+                <Link to="/sale/pos" className='btn btn-sm btn-neutral'>+ New</Link>
             </div>
 
             <div className='bg-white mt-4 p-4 rounded-md border border-gray-200'>
@@ -74,7 +74,7 @@ function ListSale() {
                                     <tr>
                                         <td colSpan={11} >
                                             <div className='flex justify-center'>
-                                                <p>No Data!</p>
+                                                <p className='text-red-400'>គ្មានទិន្នន័យ!</p>
                                             </div>
                                         </td>
                                     </tr>
@@ -103,10 +103,10 @@ function ListSale() {
                                                 <td>{item?.invoiceNumber}</td>
                                                 <td>{item?.user?.username}</td>
                                                 <td>{item?.customer?.name}</td>
-                                                <td className='text-red-600 font-semibold'>{item?.totalCost?.toFixed(2)}៛</td>
-                                                <td className='text-red-600 font-semibold'>{item?.dueAmount?.toFixed(2)}៛</td>
-                                                <td className='text-red-600 font-semibold'>{item?.paidAmount?.toFixed(2)}៛</td>
-                                                <td className='text-red-600 font-semibold'>{item?.changeAmount?.toFixed(2)}៛</td>
+                                                <td className='text-red-600 font-semibold'>{item?.totalCost?.toFixed(0)}៛</td>
+                                                <td className='text-red-600 font-semibold'>{item?.dueAmount?.toFixed(0)}៛</td>
+                                                <td className='text-red-600 font-semibold'>{item?.paidAmount?.toFixed(0)}៛</td>
+                                                <td className='text-red-600 font-semibold'>{item?.changeAmount?.toFixed(0)}៛</td>
                                                 <td>
                                                     <span
                                                         className={`
@@ -119,29 +119,29 @@ function ListSale() {
                                                         {item?.paymentStatus}
                                                     </span>
                                                 </td>
-                               
-                                                <td>{ formatDate(item?.createdAt)}</td>
+
+                                                <td>{formatDate(item?.createdAt)}</td>
                                                 <td className='flex items-center gap-2'>
-                                                    <button 
-                                                        disabled={item?.paymentStatus === "paid"}  
-                                                        type='button' 
+                                                    <button
+                                                        disabled={item?.paymentStatus === "paid"}
+                                                        type='button'
                                                         onClick={() => {
-                                                             setIsOpen(true)
-                                                             setEditId(item._id)
+                                                            setIsOpen(true)
+                                                            setEditId(item._id)
                                                         }}
                                                         className={`text-lg ${item?.paymentStatus === "paid" ? "text-gray-500 cursor-not-allowed" : "text-green-500 cursor-pointer"}`}
                                                     >
                                                         <FaCreditCard />
                                                     </button>
 
-                                                    <Link 
+                                                    <Link
                                                         to={`/sale/invoice/${item._id}`}
                                                         target='_blank'
                                                         className={`text-lg text-gray-600 cursor-pointer`}
                                                     >
                                                         <FaEye />
                                                     </Link>
-                                               
+
                                                 </td>
                                             </tr>
                                         ))

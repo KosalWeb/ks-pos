@@ -12,13 +12,13 @@ function User() {
     const [limit, setLimit] = useState(10)
     const [refetch, setRefetch] = useState(false)
 
-    const { data: users, totalPage, isLoading } = useQuery("users",search, page, limit, refetch)
-    const {remove, isLoading: isDeleting} = useCollection("users")
+    const { data: users, totalPage, isLoading } = useQuery("users", search, page, limit, refetch)
+    const { remove, isLoading: isDeleting } = useCollection("users")
     const handleDelete = async (id) => {
-        if(confirm("Are you sure! you want to delete?")){
+        if (confirm("Are you sure! you want to delete?")) {
             const res = await remove(id)
-            if(res && isDeleting == false){
-               setRefetch(!refetch)
+            if (res && isDeleting == false) {
+                setRefetch(!refetch)
                 toast.success("deleted successfully!")
             }
         }
@@ -28,10 +28,10 @@ function User() {
     return (
         <>
             <div className='flex items-center justify-between'>
-                <h1 className='text-xl font-semibold'>Users</h1>
-                <Link to="/user/create" className='btn btn-sm btn-neutral'>+ New</Link>
+                <h1 className='text-xl font-semibold'>អ្នកប្រើប្រាស់</h1>
+                <Link to="/user/create" className='btn btn-sm btn-neutral'>+ ថ្មី</Link>
             </div>
-           
+
             <div className='bg-white mt-4 p-4 rounded-md border border-gray-200'>
 
                 <div className='flex items-center justify-between'>
@@ -54,21 +54,21 @@ function User() {
                         {/* head */}
                         <thead>
                             <tr>
-                                <th>N.o</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Actions</th>
+                                <th>ល.រ</th>
+                                <th>ឈ្មោះអ្នកប្រើប្រាស់</th>
+                                <th>អ៊ីម៉ែល</th>
+                                <th>សិទ្ទិប្រើប្រាស់</th>
+                                <th>ប្រតិបត្តិការ</th>
                             </tr>
                         </thead>
-                        
+
                         {
                             (users?.length == 0 && isLoading == false) && (
                                 <tbody>
                                     <tr>
                                         <td colSpan={5} >
                                             <div className='flex justify-center'>
-                                                 <p>No Data!</p>
+                                                <p className='text-red-400'>គ្មានទិន្នន័យ!</p>
                                             </div>
                                         </td>
                                     </tr>
@@ -88,32 +88,32 @@ function User() {
                                     </tr>
                                 </tbody>
                             ) : (
-                            <tbody>
+                                <tbody>
 
-                                {
-                                    users?.map((item, idx) => (
-                                        <tr className="hover:bg-base-300" key={idx}>
-                                            <th>{idx + 1}</th>
-                                            <td>{item?.username}</td>
-                                            <td>{item?.email}</td>
-                                            <td>{item?.role}</td>
-                                            <td className='flex items-center gap-2'>
-                                                <Link to={`/user/edit/${item._id}`}  className='text-lg text-gray-800 cursor-pointer'>
+                                    {
+                                        users?.map((item, idx) => (
+                                            <tr className="hover:bg-base-300" key={idx}>
+                                                <th>{idx + 1}</th>
+                                                <td>{item?.username}</td>
+                                                <td>{item?.email}</td>
+                                                <td>{item?.role}</td>
+                                                <td className='flex items-center gap-2'>
+                                                    <Link to={`/user/edit/${item._id}`} className='text-lg text-gray-800 cursor-pointer'>
                                                         <IoPencilSharp />
-                                                </Link>
-                                                <button onClick={() => handleDelete(item._id)} type='button' className='text-lg text-error cursor-pointer'>
-                                                        <IoMdTrash/>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))
-                                }
+                                                    </Link>
+                                                    <button onClick={() => handleDelete(item._id)} type='button' className='text-lg text-error cursor-pointer'>
+                                                        <IoMdTrash />
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    }
 
-                            </tbody>
+                                </tbody>
                             )
                         }
 
-                        
+
 
                     </table>
                 </div>

@@ -28,8 +28,8 @@ function Customer() {
     return (
         <>
             <div className='flex items-center justify-between'>
-                <h1 className='text-xl font-semibold'>Customer</h1>
-                <Link to="/customer/create" className='btn btn-sm btn-neutral'>+ New</Link>
+                <h1 className='text-xl font-semibold'>បញ្ជីអតិថិជន</h1>
+                <Link to="/customer/create" className='btn btn-sm btn-neutral'>+ ថ្មី</Link>
             </div>
            
             <div className='bg-white mt-4 p-4 rounded-md border border-gray-200'>
@@ -54,12 +54,12 @@ function Customer() {
                         {/* head */}
                         <thead>
                             <tr>
-                                <th>N.o</th>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>Note</th>
-                                <th>Actions</th>
+                                <th>ល.រ</th>
+                                <th>ឈ្មោះអតិថិជន</th>
+                                <th>លេខទូរស័ព្ទ</th>
+                                <th>អាសយដ្ឋាន</th>
+                                <th>សំគាល់</th>
+                                <th>ប្រតិបត្តិការ</th>
                             </tr>
                         </thead>
                         
@@ -69,7 +69,7 @@ function Customer() {
                                     <tr>
                                         <td colSpan={6} >
                                             <div className='flex justify-center'>
-                                                 <p>No Data!</p>
+                                                 <p>គ្មានទិន្នន័យ!</p>
                                             </div>
                                         </td>
                                     </tr>

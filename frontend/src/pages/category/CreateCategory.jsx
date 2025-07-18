@@ -26,27 +26,27 @@ function CreateCategory() {
 
   return (
     <>
-        <h1 className='text-xl font-semibold'>Create New Category</h1>
+        <h1 className='text-xl font-semibold'>បន្ថែម ប្រភេទទំនិញ</h1>
 
         <div className='max-w-lg bg-white p-3 rounded-md mt-4'>
             <form onSubmit={handleSubmit}>
                  <div className='mb-3'>
-                    <label htmlFor="" className='block'>Name*</label>
+                    <label htmlFor="" className='block'>ឈ្មោះ ប្រភេទទំនិញ*</label>
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} className='input w-full' placeholder='Enter name' required />
                  </div>
                  
                  <div className='mb-3'>
-                    <label htmlFor="" className='block'>Note*</label>
+                    <label htmlFor="" className='block'>សំគាល់*</label>
                     <textarea value={note} onChange={(e) => setNote(e.target.value)} className='textarea w-full' placeholder='Enter note'></textarea>
                  </div>
                  <div className='mb-3 flex items-center justify-end gap-4'>
-                    <Link to="/category" className='btn'>Back</Link>
+                    <Link to="/category" className='btn'>ចាកចេញ</Link>
                     <button className='btn btn-neutral' disabled={isLoading}>
                      {
                            isLoading ? (
                               <span className="loading loading-spinner loading-md"></span>
                            ) : (
-                              <span>Save</span>
+                              <span>រក្សាទុក</span>
                            )
                      }
                     </button>

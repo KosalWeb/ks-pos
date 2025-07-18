@@ -4,18 +4,18 @@ import { useSignin } from "../../hooks/auth/useSignin";
 import toast from "react-hot-toast";
 function Signin() {
     const navigate = useNavigate()
-    const {isLoading, signin} = useSignin()
+    const { isLoading, signin } = useSignin()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const handleSubmit = async (e) => {
         e.preventDefault()
         const res = await signin(email, password)
-        if(res?.success){
-            if(res?.result?.role === "admin" || res?.result?.role === "super"){
+        if (res?.success) {
+            if (res?.result?.role === "admin" || res?.result?.role === "super") {
                 navigate('/')
-            }else if(res?.result?.role === "cashier"){
+            } else if (res?.result?.role === "cashier") {
                 navigate('/cashier/pos')
-            }else{
+            } else {
                 navigate('/aunthorization')
             }
             toast.success("Sign in successfully!")
@@ -25,9 +25,9 @@ function Signin() {
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <form onSubmit={handleSubmit} className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-                <h2 className="mb-6 text-3xl font-bold text-center text-gray-700">
-                    Master POS
-                </h2>
+                <div className="flex items-center justify-center">
+                    <img src="logo mcs.png" alt="" width={100} />
+                </div>
 
                 {/* Email Input */}
                 <div className="mb-4">

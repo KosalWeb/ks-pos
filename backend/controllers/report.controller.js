@@ -36,10 +36,10 @@ exports.generalReport = async (req, res, next) => {
 
 
         //3). total due amount purchase
-        const duePurchaes = await Purchase.find({
+        const duePurchase = await Purchase.find({
             paymentStatus: 'due'
         },{totalCost: 1})
-        const totalDueAmountPurchase = dueSales.reduce((sum, purchase) => {
+        const totalDueAmountPurchase = duePurchase.reduce((sum, purchase) => {
             return sum + purchase.totalCost;
         },0)
 

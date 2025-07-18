@@ -55,7 +55,7 @@ function SalePaymentModal({open, onClose, editId}) {
                                 </button>
                     </div>
                     <button type='submit' disabled={isUpdating} className='btn btn-neutral w-full'>
-                        Save
+                        រក្សាទុក
                     </button>
                 </form>
         </Modal>

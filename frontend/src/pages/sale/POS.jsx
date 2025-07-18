@@ -5,7 +5,7 @@ import { apiUrl } from "../../configs/env";
 import { useCheckStock } from "../../hooks/useCheckStock";
 import Modal from "../../components/Modal";
 import toast from "react-hot-toast";
-import {useCollection} from "../../hooks/useCollection"
+import { useCollection } from "../../hooks/useCollection"
 function POS() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
@@ -16,7 +16,7 @@ function POS() {
   const [paidAmount, setPaidAmount] = useState(1);
   const [customer, setCustomer] = useState("")
 
-  const {create, isLoading} = useCollection("sale")
+  const { create, isLoading } = useCollection("sale")
   const { checkStock } = useCheckStock();
   const { data: customers } = useQuery("customers", "", 1, 100);
   const { data: categories } = useQuery("categories", "", 1, 100);
@@ -83,27 +83,27 @@ function POS() {
 
   const handleAddPayment = async (e) => {
     e.preventDefault()
-    if(carts.length <= 0){
+    if (carts.length <= 0) {
       toast.error("Please add product to the cart!")
       return;
     }
 
     const data = {
-       customer,
-       totalCost,
-       paidAmount,
-       items: carts
+      customer,
+      totalCost,
+      paidAmount,
+      items: carts
     }
     const res = await create(data)
     console.log(res)
-    if(res){
+    if (res) {
       clearForm()
-       toast.success("Sale Created successfully!")
-       window.open(`/sale/invoice/${res?.result?._id}`)
+      toast.success("Sale Created successfully!")
+      window.open(`/sale/invoice/${res?.result?._id}`)
     }
   }
 
-  function clearForm(){
+  function clearForm() {
     setPaidAmount(0)
     setCustomer("")
     setIsOpenModal(false)
@@ -236,9 +236,8 @@ function POS() {
                     setCategory("");
                     setCondition("");
                   }}
-                  className={`${
-                    category === "" && "btn-neutral"
-                  } btn btn-sm rounded-lg`}
+                  className={`${category === "" && "btn-neutral"
+                    } btn btn-sm rounded-lg`}
                 >
                   All
                 </button>
@@ -247,9 +246,8 @@ function POS() {
                   <button
                     key={item._id}
                     onClick={() => setCategory(item._id)}
-                    className={`${
-                      category === item._id && "btn-neutral"
-                    } btn btn-sm rounded-lg capitalize`}
+                    className={`${category === item._id && "btn-neutral"
+                      } btn btn-sm rounded-lg capitalize`}
                   >
                     {item?.name}
                   </button>
@@ -287,7 +285,7 @@ function POS() {
 
             {isProductLoading == false && products?.length <= 0 && (
               <div className="flex justify-center items-center h-[200px]">
-                <p>No Data!</p>
+                <p className='text-red-400'>គ្មានទិន្នន័យ!</p>
               </div>
             )}
           </div>

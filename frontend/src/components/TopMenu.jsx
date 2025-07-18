@@ -24,7 +24,7 @@ function TopMenu(props) {
             
             {
                 user?.role === "cashier" && (
-                    <h1 className='text-lg md:text-xl lg:text-2xl font-bold'>Master POS</h1> 
+                    <h1 className='text-lg md:text-xl lg:text-2xl font-bold'>KOSAL POS</h1> 
                 ) 
             }
 
@@ -76,7 +76,7 @@ function TopMenu(props) {
                                             <span>
                                                 <TbLogout2 />
                                             </span>
-                                            <span>Sign out</span>
+                                            <span>ចាកចេញ</span>
                                         </>
                                     )
                                 }

@@ -28,7 +28,7 @@ function Supplier() {
     return (
         <>
             <div className='flex items-center justify-between'>
-                <h1 className='text-xl font-semibold'>Suppliers</h1>
+                <h1 className='text-xl font-semibold'>បញ្ជីអ្នកផ្គត់ផ្គង់</h1>
                 <Link to="/supplier/create" className='btn btn-sm btn-neutral'>+ New</Link>
             </div>
            
@@ -54,13 +54,13 @@ function Supplier() {
                         {/* head */}
                         <thead>
                             <tr>
-                                <th>N.o</th>
-                                <th>Business Name</th>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>Note</th>
-                                <th>Actions</th>
+                                <th>ល.រ</th>
+                                <th>ឈ្មោះក្រុមហ៊ុន</th>
+                                <th>ឈ្មោះ</th>
+                                <th>លេខទូរស័ព្ទ</th>
+                                <th>អាសយដ្ឋាន</th>
+                                <th>សំគាល់</th>
+                                <th>ប្រតិបត្តិការ</th>
                             </tr>
                         </thead>
                         
@@ -70,7 +70,7 @@ function Supplier() {
                                     <tr>
                                         <td colSpan={5} >
                                             <div className='flex justify-center'>
-                                                 <p>No Data!</p>
+                                                 <p>គ្មានទិន្នន័យ!</p>
                                             </div>
                                         </td>
                                     </tr>

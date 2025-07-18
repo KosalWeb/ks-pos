@@ -61,14 +61,14 @@ function CreateProduct() {
     return (
         <div className="p-4">
             <div className="flex justify-between items-center">
-                <h1 className="text-xl font-semibold">Create new product</h1>
+                <h1 className="text-xl font-semibold">បន្ថែម ផលិតផលថ្មី</h1>
             </div>
 
             <form onSubmit={handleSubmit} className="max-w-4xl w-full mt-4 grid grid-cols-2 gap-2 items-start">
                 <div className="bg-white p-4 rounded-md">
                     <div className="mb-3">
                         <label htmlFor="" className="block">
-                            Name*
+                            ឈ្មោះទំនិញ*
                         </label>
                         <input
                             type="text"
@@ -81,7 +81,7 @@ function CreateProduct() {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="" className="block">
-                            Category*
+                            ប្រភេទទំនិញ*
                         </label>
                         <select className="select w-full" required onChange={(e) => setCategory(e.target.value)} value={category} >
                             <option value="" disabled>
@@ -97,7 +97,7 @@ function CreateProduct() {
 
                     <div className="mb-3">
                         <label htmlFor="" className="block">
-                            Cost Price*
+                            តម្លៃដើម*
                         </label>
                         <input
                             type="number"
@@ -111,7 +111,7 @@ function CreateProduct() {
 
                     <div className="mb-3">
                         <label htmlFor="" className="block">
-                            Sale Price*
+                            តម្លៃលក់*
                         </label>
                         <input
                             type="number"
@@ -125,24 +125,24 @@ function CreateProduct() {
 
                     <div className="mb-3">
                         <label htmlFor="" className="block">
-                            Note*
+                            សំគាល់*
                         </label>
-                        <textarea 
-                            className="textarea w-full" 
-                            value={note} 
-                            onChange={(e) => setNote(e.target.value)} 
+                        <textarea
+                            className="textarea w-full"
+                            value={note}
+                            onChange={(e) => setNote(e.target.value)}
                             placeholder="Type your note here..." ></textarea>
                     </div>
 
 
                     <div className="flex items-center justify-end gap-2">
-                        <Link to="/product" className="btn btn-sm">Back</Link>
+                        <Link to="/product" className="btn btn-sm">ចាកចេញ</Link>
                         <button className="btn btn-sm btn-neutral" disabled={isLoading}>
                             {
                                 isLoading ? (
                                     <span className="loading loading-spinner loading-md"></span>
                                 ) : (
-                                    <span>Save</span>
+                                    <span>រក្សាទុក</span>
                                 )
                             }
                         </button>
@@ -167,10 +167,11 @@ function CreateProduct() {
                         </div>
                     ) : (
                         <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-neutral hover:bg-gray-50">
-                            <span className="text-gray-500">Click to upload an image</span>
+                            <span className="text-gray-500">ជ្រើសរើសរូបភាព</span>
                             <input
                                 type="file"
                                 className="hidden"
+                                required
                                 accept="image/*"
                                 onChange={handleImageChange}
                             />

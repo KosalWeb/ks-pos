@@ -34,13 +34,13 @@ function Purchase() {
             />
 
             <PurchasePaymentStatusModal
-                    open={isOpenPaymentStatus}
-                    editId={editId}
-                    onClose={() => {
-                         setIsOpenPaymentStatus(false)
-                         setRefetch(!refetch)
-                         setEditId("")
-                    }}
+                open={isOpenPaymentStatus}
+                editId={editId}
+                onClose={() => {
+                    setIsOpenPaymentStatus(false)
+                    setRefetch(!refetch)
+                    setEditId("")
+                }}
             />
 
             <div className='flex items-center justify-between'>
@@ -69,18 +69,18 @@ function Purchase() {
                     <table className="table">
                         {/* head */}
                         <thead>
-                            <tr>
-                                <th>N.o</th>
-                                <th>Supplier</th>
-                                <th>Puchase By</th>
-                                <th>Total Cost</th>
-                                <th>Due Amount</th>
-                                <th>Paid Amount</th>
-                                <th>Change Amount</th>
-                                <th>Payment Status</th>
-                                <th>Purchase Status</th>
-                                <th>Purchase Date</th>
-                                <th>Actions</th>
+                            <tr >
+                                <th>ល.រ</th>
+                                <th>អ្នកផ្គត់ផ្គង់</th>
+                                <th>អ្នកលក់</th>
+                                <th>តម្លៃដើម</th>
+                                <th>ប្រាក់ជំពាក់</th>
+                                <th>ទូទាត់រួច</th>
+                                <th>ប្រាក់អាប់</th>
+                                <th>ស្ថានភាពបង់ប្រាក់</th>
+                                <th>ស្ថានភាពទិញ</th>
+                                <th>កាលបរិច្ឆេទ</th>
+                                <th>ប្រតិបត្តិការ</th>
                             </tr>
                         </thead>
 
@@ -90,7 +90,7 @@ function Purchase() {
                                     <tr>
                                         <td colSpan={11} >
                                             <div className='flex justify-center'>
-                                                <p>No Data!</p>
+                                                <p className='text-red-400'>គ្មានទិន្នន័យ!</p>
                                             </div>
                                         </td>
                                     </tr>
@@ -118,10 +118,11 @@ function Purchase() {
                                                 <th>{idx + 1}</th>
                                                 <td>{item?.supplier?.businessName}</td>
                                                 <td>{item?.user?.username}</td>
-                                                <td className='text-red-600 font-semibold'>{item?.totalCost?.toFixed(2)}៛</td>
-                                                <td className='text-red-600 font-semibold'>{item?.dueAmount?.toFixed(2)}៛</td>
-                                                <td className='text-red-600 font-semibold'>{item?.paidAmount?.toFixed(2)}៛</td>
-                                                <td className='text-red-600 font-semibold'>{item?.changeAmount?.toFixed(2)}៛</td>
+
+                                                <td className='text-red-600 font-semibold'>{item?.totalCost?.toFixed(0)}៛</td>
+                                                <td className='text-red-600 font-semibold'>{item?.dueAmount?.toFixed(0)}៛</td>
+                                                <td className='text-red-600 font-semibold'>{item?.paidAmount?.toFixed(0)}៛</td>
+                                                <td className='text-red-600 font-semibold'>{item?.changeAmount?.toFixed(0)}៛</td>
                                                 <td>
                                                     <span
                                                         className={`
@@ -135,7 +136,7 @@ function Purchase() {
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    <span 
+                                                    <span
                                                         className={`
                                                             text-xs font-medium me-2 px-2.5 py-0.5 rounded uppercase 
                                                             ${item?.purchaseStatus === "received" && "bg-green-100 text-green-800"}
@@ -147,21 +148,21 @@ function Purchase() {
                                                         {item?.purchaseStatus}
                                                     </span>
                                                 </td>
-                                                <td>{ formatDate(item?.purchaseDate)}</td>
+                                                <td>{formatDate(item?.purchaseDate)}</td>
                                                 <td className='flex items-center gap-2'>
-                                                    <button 
+                                                    <button
                                                         disabled={item?.paymentStatus === "paid"}
                                                         onClick={() => {
-                                                        setIsOpenPaymentStatus(true)
-                                                        setEditId(item?._id)
-                                                        }} 
-                                                        type='button' 
+                                                            setIsOpenPaymentStatus(true)
+                                                            setEditId(item?._id)
+                                                        }}
+                                                        type='button'
                                                         className={`text-lg ${item?.paymentStatus === "paid" ? "text-gray-500 cursor-not-allowed" : "text-green-500 cursor-pointer"}`}
                                                     >
                                                         <FaCreditCard />
                                                     </button>
-                                                    <button 
-                                                        type='button' 
+                                                    <button
+                                                        type='button'
                                                         disabled={item?.purchaseStatus === "received"}
                                                         onClick={() => {
                                                             setIsOpenStatus(true)
