@@ -6,6 +6,7 @@ import { IoMdTrash } from 'react-icons/io'
 import { useState } from 'react'
 import { useCollection } from '../../hooks/useCollection'
 import toast from 'react-hot-toast'
+import { FaEdit } from 'react-icons/fa'
 function Customer() {
     const [search, setSearch] = useState("")
     const [page, setPage] = useState(1)
@@ -100,8 +101,8 @@ function Customer() {
                                             <td>{item?.address}</td>
                                             <td>{item?.note}</td>
                                             <td className='flex items-center gap-2'>
-                                                <Link to={`/customer/edit/${item._id}`}  className='text-lg text-gray-800 cursor-pointer'>
-                                                        <IoPencilSharp />
+                                                <Link to={`/customer/edit/${item._id}`} className='text-lg text-blue-500 cursor-pointer'>
+                                                        <FaEdit />
                                                 </Link>
                                                 <button onClick={() => handleDelete(item._id)} type='button' className='text-lg text-error cursor-pointer'>
                                                         <IoMdTrash/>

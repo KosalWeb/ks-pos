@@ -5,28 +5,28 @@ const { generateInvoiceNumber } = require("./counter.controller")
 
 
 exports.create = async (req, res, next) => {
-    try{
-        let {items, totalCost, paidAmount, customer} = req.body
-        if(!paidAmount){
+    try {
+        let { items, totalCost, paidAmount, customer } = req.body
+        if (!paidAmount) {
             paidAmount = 0
         }
         //step 1: Fetch all products at once to validate stock
         const productIds = items.map(it => it.product)
-        const products = await Product.find({_id: { $in: productIds }})
-  
+        const products = await Product.find({ _id: { $in: productIds } })
+
         //step 2: Validate stock for each product
         const productUpdates = []
-        for(const item of items){
+        for (const item of items) {
             const product = products.find(
                 (p) => p._id.toString() === item.product.toString()
             )
-            if(!product){
+            if (!product) {
                 return res.status(404).json({
                     success: false,
                     error: `Product not found with ID: ${item.product}`
                 })
             }
-            if(product.currentStock < item.quantity){
+            if (product.currentStock < item.quantity) {
                 return res.status(400).json({
                     success: false,
                     error: `Insufficient stock for product: ${product.name}`
@@ -35,8 +35,8 @@ exports.create = async (req, res, next) => {
 
             productUpdates.push({
                 updateOne: {
-                    filter: {_id: product._id},
-                    update: {$inc: { currentStock: -item.quantity  }}
+                    filter: { _id: product._id },
+                    update: { $inc: { currentStock: -item.quantity } }
                 }
             })
         }
@@ -50,7 +50,7 @@ exports.create = async (req, res, next) => {
         const dueAmount = Math.max(0, totalCost - paidAmount)
         //step 7: Calculate change amount
         const changeAmount = Math.max(0, paidAmount - totalCost)
-        //step 8: Create new Sale
+        //step 9: Create new Sale
         const newSale = await Sale.create({
             user: req.user._id,
             customer,
@@ -60,14 +60,14 @@ exports.create = async (req, res, next) => {
             changeAmount,
             paidAmount,
             totalCost,
-            items: items
+            items,
         })
 
         res.status(201).json({
             success: true,
             result: newSale
         })
-    }catch(error){
+    } catch (error) {
         next(error)
     }
 }
@@ -80,27 +80,27 @@ exports.findAll = async (req, res, next) => {
         const skip = (page - 1) * limit
         const querySearch = {}
 
-        if(req.query.search){
+        if (req.query.search) {
             querySearch["$or"] = [
-                {invoiceNumber: { $regex: req.query.search, $options: "i" }}
+                { invoiceNumber: { $regex: req.query.search, $options: "i" } }
             ]
         }
 
         const docs = await Sale
-                            .find(querySearch)
-                            .populate("user", "username role")
-                            .populate("customer", "name phone")
-                            .populate({
-                                path: "items",
-                                populate: {
-                                    path: "product",
-                                    select: "name imageUrl salePrice costPrice currentStock"
-                                }
-                            })
-                            .skip(skip)
-                            .limit(limit)
-                            .sort({_id: -1})
-                            .exec()
+            .find(querySearch)
+            .populate("user", "username role")
+            .populate("customer", "name phone")
+            .populate({
+                path: "items",
+                populate: {
+                    path: "product",
+                    select: "name imageUrl salePrice costPrice currentStock"
+                }
+            })
+            .skip(skip)
+            .limit(limit)
+            .sort({ _id: -1 })
+            .exec()
 
         const totalItems = await Sale.find(querySearch).countDocuments()
         const totalPage = Math.ceil(totalItems / limit)
@@ -117,19 +117,19 @@ exports.findAll = async (req, res, next) => {
 
 exports.findOne = async (req, res, next) => {
     try {
-        const id = req.params.id  
+        const id = req.params.id
         const doc = await Sale
-                            .findById(id)
-                            .populate("user", "username role")
-                            .populate("customer", "name phone")
-                            .populate({
-                                path: "items",
-                                populate: {
-                                    path: "product",
-                                    select: "name imageUrl salePrice costPrice currentStock"
-                                }
-                            })
-        if(!doc){
+            .findById(id)
+            .populate("user", "username role")
+            .populate("customer", "name phone")
+            .populate({
+                path: "items",
+                populate: {
+                    path: "product",
+                    select: "name imageUrl salePrice costPrice currentStock"
+                }
+            })
+        if (!doc) {
             return res.status(404).json({
                 success: false,
                 error: "Document not found with that ID!"
@@ -150,22 +150,22 @@ exports.checkStock = async (req, res, next) => {
         const stock = req.query.stock * 1
         const product = req.query.product
 
-        if(!stock || !product){
+        if (!stock || !product) {
             return res.status(400).json({
-                success:false,
+                success: false,
                 error: "Please provide stock and product"
             })
         }
 
         const doc = await Product.findById(product)
-        if(!doc){
+        if (!doc) {
             return res.status(404).json({
                 success: false,
                 error: "Product not found!"
             })
         }
 
-        if(doc.currentStock < stock){
+        if (doc.currentStock < stock) {
             return res.status(400).json({
                 success: false,
                 error: `Insufficient stock for product: ${doc.name}`
@@ -182,11 +182,11 @@ exports.checkStock = async (req, res, next) => {
 }
 
 exports.addPayment = async (req, res, next) => {
-    try{
+    try {
         const id = req.params.id
-        const paidAmount = req.body?.paidAmount 
+        const paidAmount = req.body?.paidAmount
 
-        if(!paidAmount){
+        if (!paidAmount) {
             return res.status(400).json({
                 success: false,
                 error: "Please provide paid amount!"
@@ -196,7 +196,7 @@ exports.addPayment = async (req, res, next) => {
 
         //1). Find the sale using id
         const doc = await Sale.findById(id)
-        if(!doc){
+        if (!doc) {
             return res.status(404).json({
                 success: false,
                 error: "Sale not found with that ID!"
@@ -207,12 +207,12 @@ exports.addPayment = async (req, res, next) => {
         const totalCost = doc.totalCost
         const newPaidAmount = doc.paidAmount + paidAmount
 
-            // Calulate new due amount
+        // Calulate new due amount
         const newDueAmount = Math.max(0, totalCost - newPaidAmount)
 
         const changeAmount = Math.max(0, newPaidAmount - totalCost)
-            
-            // Determine new payment status
+
+        // Determine new payment status
         const paymentStatus = calcuatePaymentStatus(totalCost, newPaidAmount)
 
         //3). Update the sale with new payment details
@@ -228,7 +228,7 @@ exports.addPayment = async (req, res, next) => {
             result: updatedSale
         })
 
-    }catch(error){
+    } catch (error) {
         next(error)
     }
 }

@@ -105,8 +105,8 @@ function Product() {
                                                 <td>{item?.name}</td>
                                                 <td>{item?.category?.name}</td>
                                                 <td>{item?.code}</td>
-                                                <td className='text-red-600 font-bold'>{item?.costPrice}៛</td>
-                                                <td className='text-red-600 font-bold'>{item?.salePrice}៛</td>
+                                                <td className='text-red-600 font-bold'>{item?.costPrice} $</td>
+                                                <td className='text-red-600 font-bold'>{item?.salePrice} $</td>
                                                 <td>{item?.currentStock}</td>
                                                 <td>{item?.note}</td>
                                                 <td className='flex items-center gap-2'>

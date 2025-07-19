@@ -6,6 +6,7 @@ import { IoMdTrash } from 'react-icons/io'
 import { useState } from 'react'
 import { useCollection } from '../../hooks/useCollection'
 import toast from 'react-hot-toast'
+import { FaEdit } from 'react-icons/fa'
 function Category() {
     const [search, setSearch] = useState("")
     const [page, setPage] = useState(1)
@@ -28,7 +29,7 @@ function Category() {
     return (
         <>
             <div className='flex items-center justify-between'>
-                <h1 className='text-xl font-semibold'>Categories</h1>
+                <h1 className='text-xl font-semibold'>បញ្ជី ប្រភេទទំនិញ</h1>
                 <Link to="/category/create" className='btn btn-sm btn-neutral'>+ ថ្មី</Link>
             </div>
            
@@ -96,8 +97,8 @@ function Category() {
                                             <td>{item?.name}</td>
                                             <td>{item?.note}</td>
                                             <td className='flex items-center gap-2'>
-                                                <Link to={`/category/edit/${item._id}`}  className='text-lg text-gray-800 cursor-pointer'>
-                                                        <IoPencilSharp />
+                                                <Link to={`/category/edit/${item._id}`} className='text-lg text-blue-500 cursor-pointer'>
+                                                    <FaEdit />
                                                 </Link>
                                                 <button onClick={() => handleDelete(item._id)} type='button' className='text-lg text-error cursor-pointer'>
                                                         <IoMdTrash/>

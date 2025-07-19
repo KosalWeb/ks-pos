@@ -27,7 +27,7 @@ const schema = new mongoose.Schema({
             quantity: {
                 type: Number,
                 required: true,
-                min:1
+                min: 1
             },
             unitPrice: {
                 type: Number,
@@ -63,11 +63,16 @@ const schema = new mongoose.Schema({
     },
     paymentStatus: {
         type: String,
-        enum: ["paid", "due","partial"],
+        enum: ["paid", "due", "partial"],
         required: true
+    },
+    discount: {
+        type: Number,
+        default: 0,
+        min: [0, "Change amount can't be negative"]
     }
 }, { timestamps: true })
 
-const Sale = mongoose.model("Sale",schema)
+const Sale = mongoose.model("Sale", schema)
 
 module.exports = Sale

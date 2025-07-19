@@ -21,10 +21,10 @@ function EditProduct() {
     const { uploadFile, removeFile } = useStorage()
 
     const route = useParams()
-   const navigate = useNavigate()
+    const navigate = useNavigate()
 
-   const {update, isLoading} = useCollection("products")
-   const {data: product, isLoading: isFinding} = useFindById("products",route.id)
+    const { update, isLoading } = useCollection("products")
+    const { data: product, isLoading: isFinding } = useFindById("products", route.id)
 
 
     const handleImageChange = (e) => {
@@ -51,9 +51,9 @@ function EditProduct() {
             note
         }
         //1). upload image 
-        if(image){
+        if (image) {
             const res = await uploadFile(image)
-            if(res?.filename){
+            if (res?.filename) {
                 data['imageUrl'] = res?.filename
                 await removeFile(oldImageUrl)
             }
@@ -73,24 +73,24 @@ function EditProduct() {
     }
 
     useEffect(() => {
-            if(product && isFinding == false){
-                setName(product?.name || "")
-                setCategory(product?.category?._id || "")
-                setCostPrice(product?.costPrice || "")
-                setSalePrice(product?.salePrice || "")
-                setNote(product?.note || "")
-                if(product?.imageUrl){
-                    setPreview(`${apiUrl}/upload/${product?.imageUrl}`)
-                    setOldImageUrl(product?.imageUrl)
-                }
+        if (product && isFinding == false) {
+            setName(product?.name || "")
+            setCategory(product?.category?._id || "")
+            setCostPrice(product?.costPrice || "")
+            setSalePrice(product?.salePrice || "")
+            setNote(product?.note || "")
+            if (product?.imageUrl) {
+                setPreview(`${apiUrl}/upload/${product?.imageUrl}`)
+                setOldImageUrl(product?.imageUrl)
             }
-       },[product,isFinding])
+        }
+    }, [product, isFinding])
 
 
     return (
         <div className="p-4">
             <div className="flex justify-between items-center">
-                <h1 className="text-xl font-semibold">Edit product</h1>
+                <h1 className="text-xl font-semibold">កែតម្រូវ ផលិតផល</h1>
             </div>
 
             <form onSubmit={handleSubmit} className="max-w-4xl w-full mt-4 grid grid-cols-2 gap-2 items-start">
@@ -110,7 +110,7 @@ function EditProduct() {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="" className="block">
-                            Category*
+                            ប្រភេទទំនិញ*
                         </label>
                         <select className="select w-full" required onChange={(e) => setCategory(e.target.value)} value={category} >
                             <option value="" disabled>
@@ -126,7 +126,7 @@ function EditProduct() {
 
                     <div className="mb-3">
                         <label htmlFor="" className="block">
-                            Cost Price*
+                            តម្លៃដើម*
                         </label>
                         <input
                             type="number"
@@ -140,7 +140,7 @@ function EditProduct() {
 
                     <div className="mb-3">
                         <label htmlFor="" className="block">
-                            Sale Price*
+                            តម្លៃលក់e*
                         </label>
                         <input
                             type="number"
@@ -154,24 +154,24 @@ function EditProduct() {
 
                     <div className="mb-3">
                         <label htmlFor="" className="block">
-                            Note*
+                            សំគាល់*
                         </label>
-                        <textarea 
-                            className="textarea w-full" 
-                            value={note} 
-                            onChange={(e) => setNote(e.target.value)} 
+                        <textarea
+                            className="textarea w-full"
+                            value={note}
+                            onChange={(e) => setNote(e.target.value)}
                             placeholder="Type your note here..." ></textarea>
                     </div>
 
 
                     <div className="flex items-center justify-end gap-2">
-                        <Link to="/product" className="btn btn-sm">Back</Link>
+                        <Link to="/product" className="btn btn-sm">ចាកចេញ</Link>
                         <button className="btn btn-sm btn-neutral" disabled={isLoading}>
                             {
                                 isLoading ? (
                                     <span className="loading loading-spinner loading-md"></span>
                                 ) : (
-                                    <span>Save</span>
+                                    <span>រក្សាទុក</span>
                                 )
                             }
                         </button>

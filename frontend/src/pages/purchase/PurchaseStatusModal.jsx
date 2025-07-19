@@ -44,7 +44,7 @@ function PurchaseStatusModal({open, onClose, editId}) {
                         </select>
                     </div>
                     <button disabled={isUpdating} type='submit' className='btn btn-neutral w-full'>
-                        Save
+                        រក្សាទុក
                     </button>
                 </form>
         </Modal>    

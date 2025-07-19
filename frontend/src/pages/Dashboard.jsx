@@ -69,7 +69,7 @@ function Dashboard() {
 
           <div className="bg-orange-400 text-white flex justify-between items-start p-3 shadow-sm rounded-lg py-5">
             <div className="space-y-1">
-              <p className="text-sm font-semibold">ចំនួនអតិថិជនថ្ងៃនេះ</p>
+              <p className="text-sm font-semibold">ចំនួនអតិថិជន</p>
               <h2 className="text-3xl font-semibold">{isLoading ? ((<span className="loading loading-spinner loading-xs"></span>)) : data?.totalCustomers} នាក់</h2>
             </div>
             <div className="p-2">
@@ -80,7 +80,7 @@ function Dashboard() {
           </div>
           <div className="bg-blue-400 text-white flex justify-between items-start p-3 shadow-sm rounded-lg py-5">
             <div className="space-y-1">
-              <p className="text-sm font-semibold">ចំនួនអ្នកផ្គត់ផ្គង់ថ្ងៃនេះ</p>
+              <p className="text-sm font-semibold">ចំនួនអ្នកផ្គត់ផ្គង់</p>
               <h2 className="text-3xl font-semibold">{isLoading ? ((<span className="loading loading-spinner loading-xs"></span>)) : data?.totalSuppliers} នាក់</h2>
             </div>
             <div className="p-2">

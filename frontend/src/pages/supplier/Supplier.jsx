@@ -6,6 +6,7 @@ import { IoMdTrash } from 'react-icons/io'
 import { useState } from 'react'
 import { useCollection } from '../../hooks/useCollection'
 import toast from 'react-hot-toast'
+import { FaEdit } from 'react-icons/fa'
 function Supplier() {
     const [search, setSearch] = useState("")
     const [page, setPage] = useState(1)
@@ -29,7 +30,7 @@ function Supplier() {
         <>
             <div className='flex items-center justify-between'>
                 <h1 className='text-xl font-semibold'>បញ្ជីអ្នកផ្គត់ផ្គង់</h1>
-                <Link to="/supplier/create" className='btn btn-sm btn-neutral'>+ New</Link>
+                <Link to="/supplier/create" className='btn btn-sm btn-neutral'>+ ថ្មី</Link>
             </div>
            
             <div className='bg-white mt-4 p-4 rounded-md border border-gray-200'>
@@ -102,8 +103,8 @@ function Supplier() {
                                             <td>{item?.address}</td>
                                             <td>{item?.note}</td>
                                             <td className='flex items-center gap-2'>
-                                                <Link to={`/supplier/edit/${item._id}`}  className='text-lg text-gray-800 cursor-pointer'>
-                                                        <IoPencilSharp />
+                                                <Link to={`/supplier/edit/${item._id}`} className='text-lg text-blue-500 cursor-pointer'>
+                                                        <FaEdit />
                                                 </Link>
                                                 <button onClick={() => handleDelete(item._id)} type='button' className='text-lg text-error cursor-pointer'>
                                                         <IoMdTrash/>

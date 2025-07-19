@@ -133,7 +133,7 @@ function POS() {
         <form onSubmit={handleAddPayment}>
           <div className="mb-3">
             <label htmlFor="" className="block">
-              Customer
+              អតិថិជន
             </label>
             <select className="select w-full" required onChange={(e) => setCustomer(e.target.value)} value={customer}>
               <option value="">--Select Customer--</option>
@@ -144,7 +144,7 @@ function POS() {
           </div>
           <div className="mb-3">
             <label htmlFor="" className="block">
-              Paid Amount
+              ប្រាក់ទូទាត់
             </label>
             <input
               type="number"
@@ -163,59 +163,59 @@ function POS() {
               type="button"
               className="btn btn-sm"
             >
-              {totalCost?.toFixed(2)}៛
+              {totalCost?.toFixed(2)} $
             </button>
             <button
               onClick={() => setPaidAmount(5000)}
               type="button"
               className="btn btn-sm"
             >
-              5000.00៛
+              5000.00 $
             </button>
             <button
               onClick={() => setPaidAmount(10000)}
               type="button"
               className="btn btn-sm"
             >
-              10000.00៛
+              10000.00 $
             </button>
             <button
               onClick={() => setPaidAmount(20000)}
               type="button"
               className="btn btn-sm"
             >
-              20000.00៛
+              20000.00 $
             </button>
           </div>
           <hr className="mt-4 mb-2 h-[2px] bg-gray-200" />
           <div className="mb-2 grid grid-cols-2">
             <label>
-              Change Amount:
+              ប្រាក់អាប់:
               <span className="text-red-600 font-semibold">
-                {Math.max(paidAmount - totalCost, 0)}៛
+                {Math.max(paidAmount - totalCost, 0)} $
               </span>
             </label>
             <label>
-              Due Amount:
+              ប្រាក់ជំពាក់:
               <span className="text-red-600 font-semibold">
-                {Math.max(totalCost - paidAmount, 0)}៛
+                {Math.max(totalCost - paidAmount, 0)} $
               </span>
             </label>
           </div>
           <div className="mt-4">
             <button type="submit" disabled={isLoading} className="btn btn-neutral w-full">
-              Save
+              រក្សាទុក
             </button>
           </div>
         </form>
       </Modal>
       <div className="w-full">
-        <h1 className="text-3xl font-bold">Point of Sale</h1>
+        <h1 className="text-3xl font-bold">ប្រតិបត្តិការលក់</h1>
         <div className="grid grid-cols-12 gap-4 mt-4 items-start">
           <div className="col-span-12  lg:col-span-8 gap-4">
             <div className="mb-3 bg-white p-3 shadow-sm rounded-lg">
               <div className="flex items-center justify-between">
-                <h1 className="font-semibold text-lg">Categories</h1>
+                <h1 className="font-semibold text-lg">ប្រភេទទំនិញ</h1>
                 <label className="input input-sm input-bordered flex items-center gap-2">
                   <BiSearch size={18} />
                   <input
@@ -304,10 +304,10 @@ function POS() {
             <table className="table-auto w-full border-collapse my-4">
               <thead>
                 <tr className="bg-gray-200 text-sm">
-                  <th className="p-2">Name</th>
-                  <th>Quantity</th>
-                  <th className="p-2">Price</th>
-                  <th className="p-2">Actions</th>
+                  <th className="p-2">ឈ្មោះផលិតផល</th>
+                  <th>ចំនួន</th>
+                  <th className="p-2">តម្លៃរាយ</th>
+                  <th className="p-2">ប្រតិបត្តិការ</th>
                 </tr>
               </thead>
 
@@ -333,7 +333,7 @@ function POS() {
                         </button>
                       </div>
                     </td>
-                    <td className=" text-red-600">{item?.totalPrice}៛</td>
+                    <td className=" text-red-600">{item?.totalPrice} $</td>
                     <td className="">
                       <button
                         onClick={() => handleRemoveItem(item?.product)}
@@ -351,7 +351,7 @@ function POS() {
 
             <div className="flex justify-between items-center text-xl mt-2 font-bold text-gray-800">
               <p>TOTAL</p>
-              <p>{totalCost?.toFixed(2)}៛</p>
+              <p>{totalCost?.toFixed(2)} $</p>
             </div>
 
             {carts.length >= 1 && (
@@ -361,7 +361,7 @@ function POS() {
                 }}
                 className="btn btn-sm btn-neutral py-2 text-white w-full mt-4"
               >
-                Add payment
+                ទិញ
               </button>
             )}
           </div>

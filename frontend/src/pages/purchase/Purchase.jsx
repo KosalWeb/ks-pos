@@ -45,7 +45,7 @@ function Purchase() {
 
             <div className='flex items-center justify-between'>
                 <h1 className='text-xl font-semibold'>Purchase</h1>
-                <Link to="/purchase/create" className='btn btn-sm btn-neutral'>+ New</Link>
+                <Link to="/purchase/create" className='btn btn-sm btn-neutral'>+ ថ្មី</Link>
             </div>
 
             <div className='bg-white mt-4 p-4 rounded-md border border-gray-200'>
@@ -119,10 +119,10 @@ function Purchase() {
                                                 <td>{item?.supplier?.businessName}</td>
                                                 <td>{item?.user?.username}</td>
 
-                                                <td className='text-red-600 font-semibold'>{item?.totalCost?.toFixed(0)}៛</td>
-                                                <td className='text-red-600 font-semibold'>{item?.dueAmount?.toFixed(0)}៛</td>
-                                                <td className='text-red-600 font-semibold'>{item?.paidAmount?.toFixed(0)}៛</td>
-                                                <td className='text-red-600 font-semibold'>{item?.changeAmount?.toFixed(0)}៛</td>
+                                                <td className='text-red-600 font-semibold'>{item?.totalCost?.toFixed(2)} $</td>
+                                                <td className='text-red-600 font-semibold'>{item?.dueAmount?.toFixed(2)} $</td>
+                                                <td className='text-red-600 font-semibold'>{item?.paidAmount?.toFixed(2)} $</td>
+                                                <td className='text-red-600 font-semibold'>{item?.changeAmount?.toFixed(2)} $</td>
                                                 <td>
                                                     <span
                                                         className={`

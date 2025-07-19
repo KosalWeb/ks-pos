@@ -124,14 +124,14 @@ function CreatePurchase() {
     return (
         <div className="p-4">
     
-            <h1 className="text-xl font-semibold">Create Purchase</h1>
+            <h1 className="text-xl font-semibold">បង្កើត ការទិញថ្មី</h1>
             <form onSubmit={handleSubmit} className="p-4 mt-5 bg-white  rounded-lg intro-y">
                 <h3 className="text-base font-medium mt-1 w-fit mb-4 border-b border-slate-400 border-dashed">
-                    Import Product
+                    ការនាំចូលផលិតផលង
                 </h3>
                 <div className="grid grid-cols-12 gap-4">
                     <fieldset className="col-span-3">
-                        <label className="block">Supplier</label>
+                        <label className="block">ឈ្មោះអ្នកផ្គត់ផ្គង់</label>
                         <select onChange={(e) => setSuplier(e.target.value)} value={supplier} className="select w-full select-bordered" required>
                             <option value="" disabled>
                                 Select supplier
@@ -142,7 +142,7 @@ function CreatePurchase() {
                         </select>
                     </fieldset>
                     <fieldset className="col-span-3">
-                        <label className="block">Invoice Number</label>
+                        <label className="block">លេខវិក្កយបត្រ</label>
                         <div className="flex items-center">
                             <input
                                 type="text"
@@ -154,7 +154,7 @@ function CreatePurchase() {
                         </div>
                     </fieldset>
                     <fieldset className="col-span-3">
-                        <label className="block">Import Date</label>
+                        <label className="block">កាលបរិច្ឆេទ នាំចូល</label>
                         <div className="flex items-center">
                             <input
                                 onChange={(e) => setPurchaseDate(e.target.value)}
@@ -165,7 +165,7 @@ function CreatePurchase() {
                         </div>
                     </fieldset>
                     <fieldset className="col-span-3">
-                        <label className="block">Status</label>
+                        <label className="block">ស្ថានភាពទិញ</label>
                         <div className="flex items-center">
                             <select required className="select w-full select-bordered" value={purchaseStatus} onChange={(e) => setPurchaseStatus(e.target.value)}>
                                 <option value="" disabled>Select Purchase Status</option>
@@ -177,7 +177,7 @@ function CreatePurchase() {
                     </fieldset>
 
                     <fieldset className="col-span-3">
-                        <label className="block">Note</label>
+                        <label className="block">សំគាល់</label>
                         <textarea
                             onChange={(e) => setNote(e.target.value)}
                             className="textarea w-full textarea-bordered"
@@ -187,13 +187,13 @@ function CreatePurchase() {
                 </div>
 
                 <h3 className="text-base font-medium mt-8 mb-4 w-fit border-b border-slate-400 border-dashed">
-                    Product Details
+                    ផលិតផល
                 </h3>
 
                 <div className="grid grid-cols-12 gap-4">
                     <div className="col-span-4 space-y-2">
                         <fieldset>
-                            <label className="block">Product Code</label>
+                            <label className="block">កូដផលិតផល</label>
                             <div className="flex items-center relative">
                                 <input
                                     type="text"
@@ -213,7 +213,7 @@ function CreatePurchase() {
                         </fieldset>
                         <div className="grid grid-cols-2 gap-4">
                             <fieldset>
-                                <label className="block">Quantity</label>
+                                <label className="block">ចំនួន</label>
                                 <div className="flex items-center">
                                     <input
                                         type="number"
@@ -224,7 +224,7 @@ function CreatePurchase() {
                                 </div>
                             </fieldset>
                             <fieldset>
-                                <label className="label-b">Unit Price</label>
+                                <label className="label-b">តម្លៃរាយ</label>
                                 <div className="flex items-center">
                                     <input
                                         type="number"
@@ -237,7 +237,7 @@ function CreatePurchase() {
                         </div>
 
                         <fieldset>
-                            <label className="label-b">Total : <span className="text-red-600 font-semibold">{total?.toFixed(2)}៛</span> </label>
+                            <label className="label-b">សរុប : <span className="text-red-600 font-semibold">{total?.toFixed(2)} $</span> </label>
                         </fieldset>
                         <fieldset className="flex justify-end">
                             <button
@@ -245,7 +245,7 @@ function CreatePurchase() {
                                 onClick={handleAddToCart}
                                 className="btn btn-sm btn-neutral w-20"
                             >
-                                Add
+                                បន្ថែម
                             </button>
                         </fieldset>
                     </div>
@@ -255,14 +255,14 @@ function CreatePurchase() {
                             <table className="w-full border border-gray-200">
                                 <thead>
                                     <tr className="bg-gray-200 text-sm">
-                                        <th className="text-left whitespace-nowrap p-4">Image</th>
-                                        <th className="text-left whitespace-nowrap p-4">Product</th>
-                                        <th className="text-right whitespace-nowrap p-4">
-                                            Unit Price
+                                        <th className="text-center whitespace-nowrap p-4">រូបភាព</th>
+                                        <th className="text-center whitespace-nowrap p-4">ឈ្មោះផលិតផល</th>
+                                        <th className="text-center whitespace-nowrap p-4">
+                                            តម្លៃរាយ
                                         </th>
-                                        <th className="text-right whitespace-nowrap p-4">Qty</th>
-                                        <th className="text-right whitespace-nowrap p-4">Total</th>
-                                        <th className="text-right whitespace-nowrap p-4">Action</th>
+                                        <th className="text-center whitespace-nowrap p-4">ចំនួន</th>
+                                        <th className="text-center whitespace-nowrap p-4">សរុប</th>
+                                        <th className="text-center whitespace-nowrap p-4">ប្រតិបត្តិការ</th>
                                     </tr>
                                 </thead>
 
@@ -271,7 +271,7 @@ function CreatePurchase() {
                                         <tbody>
                                             <tr>
                                                 <td colSpan={6}>
-                                                    <p className="text-center p-4">No Data!</p>
+                                                    <p className="text-center p-4">គ្មានទិន្នន័យ!</p>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -282,11 +282,11 @@ function CreatePurchase() {
                                                     <td className="py-2 !p-4">
                                                         <img className="w-10" src={`${apiUrl}/upload/${el.imageUrl}`} alt="" />
                                                     </td>
-                                                    <td className="py-2 !p-4">{el?.name}</td>
+                                                    <td className="py-2 !p-4 text-center">{el?.name}</td>
 
-                                                    <td className="text-right text-red-600">{el?.unitPrice?.toFixed(2)}៛</td>
-                                                    <td className="text-right">{el?.quantity}</td>
-                                                    <td className="text-right text-red-600">{el?.totalPrice?.toFixed(2)}៛</td>
+                                                    <td className="text-center text-red-600">{el?.unitPrice?.toFixed(2)} $</td>
+                                                    <td className="text-center">{el?.quantity}</td>
+                                                    <td className="text-center text-red-600">{el?.totalPrice?.toFixed(2)} $</td>
                                                     <td className="text-center px-4">
                                                         <p onClick={() => handleRemoveItemFromCart(el.product)} className="text-red-600 w-full flex justify-end text-center space-x-1 mr-3 cursor-pointer">
                                                             <FaTrash className="w-4 h-4" />
@@ -297,7 +297,7 @@ function CreatePurchase() {
 
                                             <tr className="bg-gray-200 border-t">
                                                 <td colSpan="6" className="text-right p-2 font-semibold uppercase">
-                                                    Total : <span className="text-red-600">{totalCost?.toFixed(2)}៛</span>
+                                                    សរុប: <span className="text-red-600">{totalCost?.toFixed(2)} $</span>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -313,10 +313,10 @@ function CreatePurchase() {
 
                 <fieldset className="col-span-12 mt-4 flex items-center justify-end space-x-2">
                     <Link to="/purchase" type="button" className="w-20 btn btn-sm">
-                        Back
+                        ចាកចេញ
                     </Link>
                     <button type="submit" disabled={isLoading} className="w-20 btn btn-sm btn-neutral">
-                        Save
+                        រក្សាទុក
                     </button>
                 </fieldset>
             </form>
